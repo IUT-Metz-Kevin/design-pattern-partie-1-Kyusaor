@@ -6,14 +6,11 @@ interface ControlerActions {
   }
 
 class Clavier {
-    private _espace: string;
-    private _gauche: string;
-    private _droit: string;
+    private _espace = "espace";
+    private _gauche = "gauche";
+    private _droit = "droite";
     
-    constructor(haut: string, gauche: string, droit: string) {
-        this._droit = droit;
-        this._gauche = gauche;
-        this._espace = haut;
+    constructor() {
     }
 
     get haut() {
@@ -29,15 +26,31 @@ class Clavier {
     }
 }
 
+export class ClavierAdaptateur implements ControlerActions{
+    private _clavier: Clavier;
+
+    constructor (input: Clavier) {
+        this._clavier = input;
+    }
+
+    sauter() {
+        return this._clavier.haut;
+    }
+    attaquer() {
+        return this._clavier.gauche;
+    }
+    interargir() {
+        return this._clavier.droite;
+    }
+}
+
+
 class XBox {
-    private _A: string;
-    private _B: string;
-    private _X: string;
+    private _A = "A";
+    private _B = "B";
+    private _X = "X";
     
-    constructor(a: string, b: string, x: string) {
-        this._X = x;
-        this._B = b;
-        this._A = a;
+    constructor() {
     }
 
     get A() {
@@ -53,15 +66,31 @@ class XBox {
     }
 }
 
+export class XBoxAdaptateur implements ControlerActions {
+    private _manette: XBox;
+
+    constructor (input: XBox) {
+        this._manette = input;
+    }
+
+    sauter() {
+        return this._manette.A;
+    }
+    attaquer() {
+        return this._manette.B;
+    }
+    interargir() {
+        return this._manette.X;
+    }
+}
+
+
 class PS5 {
-    private _X: string;
-    private _O: string;
-    private _triangle: string;
+    private _X = "X";
+    private _O = "O";
+    private _triangle = "triangle";
     
-    constructor(x: string, o: string, triangle: string) {
-        this._triangle = triangle;
-        this._O = o;
-        this._X = x;
+    constructor() {
     }
 
     get X() {
@@ -76,3 +105,25 @@ class PS5 {
         return this._O;
     }
 }
+
+export class PS5Adaptateur implements ControlerActions {
+    private _manette: PS5;
+
+    constructor (input: PS5) {
+        this._manette = input;
+    }
+
+    sauter() {
+        return this._manette.O;
+    }
+    attaquer() {
+        return this._manette.X;
+    }
+    interargir() {
+        return this._manette.Triangle;
+    }
+}
+
+const ps5manette = new PS5();
+const adapPS5 = new PS5Adaptateur(ps5manette);
+console.log(adapPS5.attaquer());
