@@ -1,17 +1,4 @@
 //composite
-function arbo(liste: Departement[]) {
-    let arbo = {}
-    while (liste.length > 0) {
-        let pushable:Departement[] = [];
-
-        liste.forEach(dpt => {
-            if(!dpt.dependance)
-                arbo[dpt.nom] = [];
-            
-        })
-    }
-}
-
 export class Employe {
     private _identifiant: string;
     
