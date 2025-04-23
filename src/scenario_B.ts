@@ -1,4 +1,17 @@
 //composite
+function arbo(liste: Departement[]) {
+    let arbo = {}
+    while (liste.length > 0) {
+        let pushable:Departement[] = [];
+
+        liste.forEach(dpt => {
+            if(!dpt.dependance)
+                arbo[dpt.nom] = [];
+            
+        })
+    }
+}
+
 export class Employe {
     private _identifiant: string;
     
@@ -51,10 +64,13 @@ export class Departement {
     };
 }
 
-const SG = new Departement("Secrétariat général");
+const DG = new Departement("Direction");
 
+const SG = new Departement("Secrétariat général");
+SG.dependance = DG;
 
 const DT = new Departement("Departement technique");
+DT.dependance = DG;
 
 const it = new Departement("IT");
 const web = new Departement("Web");
@@ -63,6 +79,7 @@ web.dependance = DT;
 
 
 const DC = new Departement("Département commercial");
+DC.dependance = DG;
 
 const ventes = new Departement("Ventes");
 const achats = new Departement("Achats");
@@ -71,6 +88,7 @@ achats.dependance = DC;
 
 
 const DF = new Departement("Département financier");
+DF.dependance = DG;
 
 const rh = new Departement("RH");
 const compta = new Departement("Comptabilité");
@@ -78,5 +96,3 @@ const admin = new Departement("Administration");
 rh.dependance = DF;
 compta.dependance = DF;
 admin.dependance = DF;
-
-
